@@ -110,7 +110,8 @@ WHERE USER_ID IN (
 	WHERE USER_ADDRESS LIKE '%떡잎%'
 );
 
--- 카피바라가 들어간 게시글을 작성한 사람의 이름 주소 조회
+-- 카피바라가 들어간 /게시글을 작성한 사람의 /이름 주소 조회
+
 
 SELECT USER_EMAIL "이메일 주소", USER_ADDRESS "주소"
 FROM TBL_USER
@@ -222,6 +223,14 @@ WHERE ID IN (
    WHERE REPLY_CONTENT LIKE '%?%'
 );
 
+
+
+
+
+
+
+
+
 -- CASE
 -- 값을 대체할 때 사용하는 문장
 -- SELECT 절에서 사용된다.
@@ -263,6 +272,30 @@ FROM TBL_USER;
 --WHERE USER_ADDRESS LIKE '%서울%';
 
 
+--=================================================================
+
+-- 개인연습 -- 별점이 4점 이상인 /리뷰를 작성한 사람의 /이름과 이메일을 조회하세요
+
+SELECT MEMBER_NAME, MEMBER_EMAIL
+FROM TBL_MEMBERS
+WHERE MEMBERS_ID IN (
+
+-- IN안에 SELECT에서는 ALL이 아니라 딱 한 컬럼만 와야함
+-- SELECT * - X 컬럼이 여러 개라 IN이 뭐랑 비교할지 몰라
+-- SELECT MEMBER_ID - O 비교할 ID 하나만 뽑기
+	SELECT MEMBER_ID  
+	FROM TBL_REVIEWS
+--	LIKE는 문자열 패턴 검색용
+--	숫자 비교할땐 부등호 사용
+	WHERE REVIEW_STAR >= 4
+);
+
+
+--① 뭘 원해? → SELECT 절 결정
+--② 어디서? → FROM 절 결정
+--③ 조건이 다른 테이블에 있어? → 서브쿼리 필요
+--④ 안쪽 쿼리 먼저 혼자 실행해서 확인
+--⑤ 바깥으로 감싸기
 
 
 
